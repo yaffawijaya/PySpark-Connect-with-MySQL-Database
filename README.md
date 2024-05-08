@@ -9,7 +9,7 @@
 - Inbound Port: SSH (22)
 
 ### Working Environment
-Connect SSH from VM `ssh {username}@{public_ip}` then input the password
+Connect SSH from VM via terminal/powershell/cmd using `ssh {username}@{public_ip}` then input the password
 
 ## Installation Guides
 
