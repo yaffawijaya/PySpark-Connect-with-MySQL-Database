@@ -54,3 +54,13 @@ Connect SSH from VM
 ('2024-05-20', 79.1, 0.4, 63);
 `
 
+
+## Pyspark File
+`from pyspark.sql import SparkSession`
+
+`spark = SparkSession.builder.appName("PySpark MySQL Connection").config("spark.jars", "/usr/share/java/mysql-connector-j-8.4.0.jar").getOrCreate()`
+
+`df = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/pyspark_database").option("query", "SELECT * FROM Weather").option("user", "ilokuda").option("password", "ilokudatangjiro").load()`
+
+`df.show()`
+
