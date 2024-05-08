@@ -3,29 +3,21 @@
 ## Requirements
 
 ### Azure Virtual Machine (specification and configuration):
-- 2 vCPUs and 8 Gig of RAM for PySpark job
-- Linux (Ubuntu Server 22.04 LTS x64 Gen2) 
-- Auth type: password
-- Inbound Port: SSH (22)
+- **VM Specifications**: 2 vCPUs and 8 GB of RAM for PySpark job
+- **Operating System**: Linux (Ubuntu Server 22.04 LTS x64 Gen2)
+- **Authentication Type**: Password
+- **Inbound Port**: SSH (22)
 
-### Working Environment
+## Working Environment
 Connect SSH from VM via terminal/powershell/cmd using `ssh {username}@{public_ip}` then input the password
 
-## Installation python3.8 Guides
+## Installation Python 3.8 and Virtual Environment Guides
 
 ```bash
 sudo apt update
-```
-```bash
 sudo apt upgrade
-```
-```bash
 sudo add-apt-repository ppa:deadsnakes/ppa -y
-```
-```bash
 sudo apt install python3.8
-```
-```bash
 python3.8 --version
 ```
 
@@ -33,25 +25,16 @@ python3.8 --version
 
 ```bash
 sudo apt-get install python3-pip
-```
-```bash
 sudo pip3 install virtualenv
-```
-```bash
 virtualenv {your_env_name} -p python3.8
-```
-```bash
 source {your_env_name}/bin/activate
 ```
+
 ## Install Java
 
 ```bash
 sudo apt update
-```
-```bash
-sudo apt install default-jdk  -y
-```
-```bash
+sudo apt install default-jdk -y
 java --version
 ```
 
@@ -59,11 +42,11 @@ java --version
 
 ```bash
 sudo apt install curl mlocate git scala -y
-```
-```bash
 wget https://dlcdn.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz
+tar xvf spark-3.5.1-bin-hadoop3.tgz
 ```
-if above command is error, then change the url in this by finding the latest release from [download page](https://spark.apache.org/downloads.html). Then try to run `wget {new_hadoop_download_link}`
+
+if above command is error, then change the url in this by finding the latest release from [download page](https://spark.apache.org/downloads.html). Then try to run `wget {new_hadoop_download_link}` and redo the extract below
 
 ```bash
 tar xvf spark-3.5.1-bin-hadoop3.tgz
@@ -93,12 +76,12 @@ export PYSPARK_PYTHON=/usr/bin/python3.8
 export PYTHONPATH=$(ZIPS=("$SPARK_HOME"/python/lib/*.zip); IFS=:; echo "${ZIPS[*]}"):$PYTHONPATH
 ```
 
-### Source the bashrc
+## Source the bashrc
 ```bash
 source ~/.bashrc
 ```
 
-### Test the Spark and PySpark
+## Test the Spark and PySpark
 Test `spark-shell` installation:
 ```bash
 spark-shell
@@ -154,7 +137,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'your_username'@'localhost' WITH GRANT OPTION;
 quit
 ```
 
-### Try to access your user just create:
+## Try to access your user just create:
 ```bash
 mysql -u {your_username} -p
 ```
@@ -172,7 +155,7 @@ CREATE DATABASE {database_name};
 USE {database_name};
 ```
 
-### Create Table
+## Create Table
 
 ```mysql
 CREATE TABLE {table_name} (
@@ -184,9 +167,9 @@ CREATE TABLE {table_name} (
 );
 ```
 
-### Insert Table
+## Insert Table
 
-```mysql
+```sql
 INSERT INTO {table_name} (date, temperature, precipitation, humidity) VALUES
 ('2024-05-01', 75.2, 0.3, 60),
 ('2024-05-02', 74.8, 0.5, 62),
@@ -210,9 +193,9 @@ INSERT INTO {table_name} (date, temperature, precipitation, humidity) VALUES
 ('2024-05-20', 79.1, 0.4, 63);
 ```
 
-### Quit mysql
+## Quit mysql
 
-```mysql
+```sql
 quit
 ```
 
@@ -227,11 +210,35 @@ nano {your_files}.py
 ```python
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder.appName("PySpark MySQL Connection").config("spark.jars", "/usr/share/java/mysql-connector-j-{version}.jar").getOrCreate()
+# Define connection parameters
+database_name = "{your_database_name}"
+table_name = "{your_table_name}"
+username = "{your_username}"
+password = "{your_password}"
+mysql_version = "{mysql_version}"  # e.g., "8.0"
 
-df = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/{your_database_name}").option("query", "SELECT * FROM {your_table_name}").option("user", "{your_username}").option("password", "{your_password}").load()
+# Create a SparkSession
+spark = SparkSession.builder \
+    .appName("PySpark MySQL Connection") \
+    .config("spark.jars", f"/usr/share/java/mysql-connector-java-{mysql_version}.jar") \
+    .getOrCreate()
 
+# Define JDBC connection properties
+jdbc_url = f"jdbc:mysql://localhost:3306/{database_name}"
+jdbc_properties = {
+    "driver": "com.mysql.cj.jdbc.Driver",
+    "url": jdbc_url,
+    "query": f"SELECT * FROM {table_name}",
+    "user": username,
+    "password": password
+}
+
+# Load data from MySQL using JDBC
+df = spark.read.format("jdbc").options(**jdbc_properties).load()
+
+# Show the DataFrame
 df.show()
+
 ```
 
 
