@@ -58,7 +58,7 @@ paste this configuration into bashrc:
 `sudo dpkg -i mysql-connector-j_8.4.0-1ubuntu22.04_all.deb`
 
 ## Spark Jar Configuration Path
-`/usr/share/java/{mysql-connection.jars}`
+`cd /usr/share/java/ && pwd && ls && cd ~/`
 
 ## Create Table
 `CREATE TABLE Weather (
