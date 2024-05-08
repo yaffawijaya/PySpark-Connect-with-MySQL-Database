@@ -1,4 +1,4 @@
-# PySpark Connect MySQL - Don't Forget to Star this Repo!!!!!
+# PySpark Connect MySQL
 
 ## Requirements
 
@@ -223,6 +223,7 @@ spark-submit --master local[*] --jars {mysql_connector_path} --executor-cores 2 
 *Note: Be careful with `{mysql_connector_path}` and `{your_files.py}`
 
 # And you are all set! Congratulation!
+### If you feel this repository is helpful, you can give a Star for the credit. Thank You!
 
 ## References:
 - [How to Install Python 3.8 on Ubuntu 22.04 or 20.04](https://www.linuxcapable.com/install-python-3-8-on-ubuntu-linux/)
