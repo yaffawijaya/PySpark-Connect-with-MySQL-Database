@@ -14,9 +14,44 @@ Connect SSH from VM
 ## Installation Guides
 
 - **Python Installation Guide:** [Install Python 3.8 on Ubuntu Linux](https://www.linuxcapable.com/install-python-3-8-on-ubuntu-linux/)
+
+## Create Python Virtual Environment
+`sudo apt-get install python3-pip`
+`sudo pip3 install virtualenv`
+`virtualenv name_of_the_project -p python3.8`
+
 - **PySpark Installation Guide:** [How to Install Apache Spark and Run PySpark in Ubuntu 22.04](https://dev.to/kinyungu_denis/to-install-apache-spark-and-run-pyspark-in-ubuntu-2204-4i79)
+
+## Install Java
+`sudo apt update`
+`sudo apt install default-jdk  -y`
+`java --version`
+
+## Install Apache Spark
+`sudo apt install curl mlocate git scala -y`
+`wget https://www.apache.org/dyn/closer.lua/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz`
+`tar xvf spark-3.5.1-bin-hadoop3.tgz`
+
+## Configure Spark Environment
+`sudo nano ~/.bashrc`
+`cd spark-3.5.1-bin-hadoop3 && pwd && cd ..`
+copy the path
+
+`export SPARK_HOME={paste the path here}`
+
+`export PATH=$PATH:$SPARK_HOME/bin`
+
+`export SPARK_LOCAL_IP=localhost`
+
+`export PYSPARK_PYTHON=/usr/bin/python3.8`
+
+`export PYTHONPATH=$(ZIPS=("$SPARK_HOME"/python/lib/*.zip); IFS=:; echo "${ZIPS[*]}"):$PYTHONPATH`
+
 - **MySQL Installation Guide:** [How to Install MySQL on Ubuntu 22.04](https://phoenixnap.com/kb/install-mysql-ubuntu-22-04)
-- **MySQL Connector Install:** [MySQL Connector/J Downloads](https://dev.mysql.com/downloads/connector/j/)
+
+## Install mysql-connector and Depackage
+`wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j_8.4.0-1ubuntu22.04_all.deb`
+`dpkg -i mysql-connector-j_8.4.0-1ubuntu22.04_all.deb`
 
 ## Spark Jar Configuration Path
 `/usr/share/java/{mysql-connection.jars}`
