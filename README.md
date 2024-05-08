@@ -12,93 +12,173 @@
 Connect SSH from VM via terminal/powershell/cmd using `ssh {username}@{public_ip}` then input the password
 
 ## Installation python3.8 Guides
-`sudo apt update`
-`sudo apt upgrade`
-`sudo add-apt-repository ppa:deadsnakes/ppa -y`
-`sudo apt install python3.8`
-`python3.8 --version`
+
+```bash
+sudo apt update
+```
+```bash
+sudo apt upgrade
+```
+```bash
+sudo add-apt-repository ppa:deadsnakes/ppa -y
+```
+```bash
+sudo apt install python3.8
+```
+```bash
+python3.8 --version
+```
 
 ## Create Python Virtual Environment
-`sudo apt-get install python3-pip`
-`sudo pip3 install virtualenv`
-`virtualenv name_of_the_project -p python3.8`
-`source {your env name}/bin/activate`
 
+```bash
+sudo apt-get install python3-pip
+```
+```bash
+sudo pip3 install virtualenv
+```
+```bash
+virtualenv {your_env_name} -p python3.8
+```
+```bash
+source {your_env_name}/bin/activate
+```
 ## Install Java
-`sudo apt update`
-`sudo apt install default-jdk  -y`
-`java --version`
+
+```bash
+sudo apt update
+```
+```bash
+sudo apt install default-jdk  -y
+```
+```bash
+java --version
+```
 
 ## Install Apache Spark
 `sudo apt install curl mlocate git scala -y`
 `wget https://dlcdn.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz`
 `tar xvf spark-3.5.1-bin-hadoop3.tgz`
 
+```bash
+sudo apt install curl mlocate git scala -y
+```
+```bash
+wget https://dlcdn.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz
+```
+if above command is error, then change the url in this by finding the latest release from [download page](https://spark.apache.org/downloads.html). Then try to run `wget {new_hadoop_download_link}`
+
+```bash
+tar xvf spark-3.5.1-bin-hadoop3.tgz
+```
+
 ## Configure Spark Environment
-`cd spark-3.5.1-bin-hadoop3 && pwd && cd ..`
-copy the path
 
-`sudo nano ~/.bashrc`
+```bash
+cd spark-3.5.1-bin-hadoop3 && pwd && cd ..
+```
+Then, copy the hadoop_path and save to your note
 
-paste this configuration into bashrc:
-`export SPARK_HOME={paste the path here}`
+```bash
+sudo nano ~/.bashrc
+```
 
-`export PATH=$PATH:$SPARK_HOME/bin`
+Then, paste hadoop_path into bashrc configuration:
+```bash
+export SPARK_HOME={hadoop_path}
 
-`export SPARK_LOCAL_IP=localhost`
+export PATH=$PATH:$SPARK_HOME/bin
 
-`export PYSPARK_PYTHON=/usr/bin/python3.8`
+export SPARK_LOCAL_IP=localhost
 
-`export PYTHONPATH=$(ZIPS=("$SPARK_HOME"/python/lib/*.zip); IFS=:; echo "${ZIPS[*]}"):$PYTHONPATH`
+export PYSPARK_PYTHON=/usr/bin/python3.8
+
+export PYTHONPATH=$(ZIPS=("$SPARK_HOME"/python/lib/*.zip); IFS=:; echo "${ZIPS[*]}"):$PYTHONPATH
+```
 
 ### Source the bashrc
-`source ~/.bashrc`
-
+```bash
+source ~/.bashrc
+```
 
 ## Install mysql-connector and Depackage
-`wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j_8.4.0-1ubuntu22.04_all.deb`
-`sudo dpkg -i mysql-connector-j_8.4.0-1ubuntu22.04_all.deb`
+
+```bash
+wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j_8.4.0-1ubuntu22.04_all.deb
+```
+```bash
+sudo dpkg -i mysql-connector-j_8.4.0-1ubuntu22.04_all.deb
+```
 
 ## Spark Jar Configuration Path
-`cd /usr/share/java/ && pwd && ls && cd ~/`
-copy the path and copy the mysql-connector-j-{version}.jar, and save to note with this format: `/usr/share/java/mysql-connector-j-{version}.jar`
+```bash
+cd /usr/share/java/ && pwd && ls && cd ~/
+```
+
+copy the path (`/usr/share/java/`) and copy the mysql-connector-j-{version}.jar, and save to note with this format: `/usr/share/java/mysql-connector-j-{version}.jar`
 
 ## Install MySQL
-- **MySQL Installation Guide:** [How to Install MySQL on Ubuntu 22.04](https://phoenixnap.com/kb/install-mysql-ubuntu-22-04)
-
-`sudo apt update`
-`sudo apt upgrade`
-`sudo apt install mysql-server`
+```bash
+sudo apt update
+```
+```bash
+sudo apt upgrade
+```
+```bash
+sudo apt install mysql-server
+```
+```bash
 `mysqld --version`
+```
 
 ## Set up mysql
-`sudo mysql -u root`
-`CREATE USER '{your_username}'@'localhost' IDENTIFIED BY '{your_password}';`
-`GRANT ALL PRIVILEGES ON *.* TO 'your_username'@'localhost' WITH GRANT OPTION;`
-`quit`
+```bash
+sudo mysql -u root
+```
+```mysql
+CREATE USER '{your_username}'@'localhost' IDENTIFIED BY '{your_password}';
+```
+```mysql
+GRANT ALL PRIVILEGES ON *.* TO 'your_username'@'localhost' WITH GRANT OPTION;
+```
+```mysql
+quit
+```
 
 ### Try to access your user just create:
-`mysql -u {your_username} -p`
+```bash
+mysql -u {your_username} -p
+```
+
 enter the password `{your_password}`
 
 ## Your next objectives is: Create Database and create table with dummy data
 ### Create Database
-`CREATE DATABASE {database_name};`
+```mysql
+CREATE DATABASE {database_name};
+```
 
 ### User Database
-`USE {database_name};`
+```mysql
+USE {database_name};
+```
 
 ### Create Table
-`CREATE TABLE {table_name} (
+
+```mysql
+CREATE TABLE {table_name} (
     id INT AUTO_INCREMENT PRIMARY KEY,
     date DATE,
     temperature FLOAT,
     precipitation FLOAT,
     humidity FLOAT
-);`
+);
+```
 
 ### Insert Table
-`INSERT INTO {table_name} (date, temperature, precipitation, humidity) VALUES
+
+```mysql
+INSERT INTO {table_name} (date, temperature, precipitation, humidity) VALUES
 ('2024-05-01', 75.2, 0.3, 60),
 ('2024-05-02', 74.8, 0.5, 62),
 ('2024-05-03', 76.5, 0.2, 58),
@@ -119,24 +199,37 @@ enter the password `{your_password}`
 ('2024-05-18', 77.2, 0.3, 58),
 ('2024-05-19', 78.4, 0.2, 60),
 ('2024-05-20', 79.1, 0.4, 63);
-`
+```
 
 ### Quit mysql
-`quit;`
+
+```mysql
+quit
+```
 
 ## Create .py Pyspark File:
-`nano {your_files}.py`
+```bash
+nano {your_files}.py
+```
+
 
 ## Input this script into your .py:
-`from pyspark.sql import SparkSession`
 
-`spark = SparkSession.builder.appName("PySpark MySQL Connection").config("spark.jars", "/usr/share/java/mysql-connector-j-{version}.jar").getOrCreate()`
+```python
+from pyspark.sql import SparkSession
 
-`df = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/{your_database_name}").option("query", "SELECT * FROM {your_table_name}").option("user", "{your_username}").option("password", "{your_password}").load()`
+spark = SparkSession.builder.appName("PySpark MySQL Connection").config("spark.jars", "/usr/share/java/mysql-connector-j-{version}.jar").getOrCreate()
 
-`df.show()`
+df = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/{your_database_name}").option("query", "SELECT * FROM {your_table_name}").option("user", "{your_username}").option("password", "{your_password}").load()
+
+df.show()
+```
+
 
 ## Command to spark submit (copy all command, and make sure your jar version and your_files.py)
-`spark-submit --master local[*] --jars /usr/share/java/mysql-connector-j-{version}.jar --executor-cores 2 --executor-memory 4g --driver-memory 4g --driver-cores 2 --executor-memory 2g --executor-cores 1 {your_files.py}`
+*Be careful with `/usr/share/java/mysql-connector-j-{version}.jar` and `{your_files.py}`
+```bash
+spark-submit --master local[*] --jars /usr/share/java/mysql-connector-j-{version}.jar --executor-cores 2 --executor-memory 4g --driver-memory 4g --driver-cores 2 --executor-memory 2g --executor-cores 1 {your_files.py}
+```
 
 
