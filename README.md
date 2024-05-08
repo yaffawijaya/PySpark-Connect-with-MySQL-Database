@@ -83,7 +83,10 @@ enter the password `{your_password}`
 
 ## Your next objectives is: Create Database and create table with dummy data
 ### Create Database
-`CREATE DATABASE {database_name}`
+`CREATE DATABASE {database_name};`
+
+### User Database
+`USE {database_name};`
 
 ### Create Table
 `CREATE TABLE {table_name} (
