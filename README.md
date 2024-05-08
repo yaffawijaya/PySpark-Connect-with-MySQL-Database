@@ -12,17 +12,17 @@
 Connect SSH from VM via terminal/powershell/cmd using `ssh {username}@{public_ip}` then input the password
 
 ## Installation Guides
-
-- **Python Installation Guide:** [Install Python 3.8 on Ubuntu Linux](https://www.linuxcapable.com/install-python-3-8-on-ubuntu-linux/)
+`sudo apt update`
+`sudo apt upgrade`
+`sudo add-apt-repository ppa:deadsnakes/ppa -y`
+`sudo apt install python3.8`
+`python3.8 --version`
 
 ## Create Python Virtual Environment
 `sudo apt-get install python3-pip`
 `sudo pip3 install virtualenv`
 `virtualenv name_of_the_project -p python3.8`
 `source {your env name}/bin/activate`
-
-## Guide to install PySpark
-- **PySpark Installation Guide:** [How to Install Apache Spark and Run PySpark in Ubuntu 22.04](https://dev.to/kinyungu_denis/to-install-apache-spark-and-run-pyspark-in-ubuntu-2204-4i79)
 
 ## Install Java
 `sudo apt update`
