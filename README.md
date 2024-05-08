@@ -62,6 +62,17 @@ paste this configuration into bashrc:
 ## Install MySQL
 - **MySQL Installation Guide:** [How to Install MySQL on Ubuntu 22.04](https://phoenixnap.com/kb/install-mysql-ubuntu-22-04)
 
+`sudo apt update`
+`sudo apt upgrade`
+`sudo apt install mysql-server`
+`mysqld --version`
+
+## Set up mysql
+`sudo mysql -u root`
+`CREATE USER 'your_username'@'localhost' IDENTIFIED BY 'your_password';`
+`GRANT ALL PRIVILEGES ON *.* TO 'your_username'@'localhost' WITH GRANT OPTION;`
+`quit`
+
 ## Create Table
 `CREATE TABLE Weather (
     id INT AUTO_INCREMENT PRIMARY KEY,
