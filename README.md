@@ -20,6 +20,7 @@ Connect SSH from VM
 `sudo pip3 install virtualenv`
 `virtualenv name_of_the_project -p python3.8`
 
+## Guide to install PySpark
 - **PySpark Installation Guide:** [How to Install Apache Spark and Run PySpark in Ubuntu 22.04](https://dev.to/kinyungu_denis/to-install-apache-spark-and-run-pyspark-in-ubuntu-2204-4i79)
 
 ## Install Java
@@ -37,6 +38,9 @@ Connect SSH from VM
 `cd spark-3.5.1-bin-hadoop3 && pwd && cd ..`
 copy the path
 
+`sudo nano ~/.bashrc`
+
+paste this configuration into bashrc:
 `export SPARK_HOME={paste the path here}`
 
 `export PATH=$PATH:$SPARK_HOME/bin`
