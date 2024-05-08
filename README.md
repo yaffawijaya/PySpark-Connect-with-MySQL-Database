@@ -55,7 +55,7 @@ paste this configuration into bashrc:
 
 ## Install mysql-connector and Depackage
 `wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j_8.4.0-1ubuntu22.04_all.deb`
-`dpkg -i mysql-connector-j_8.4.0-1ubuntu22.04_all.deb`
+`sudo dpkg -i mysql-connector-j_8.4.0-1ubuntu22.04_all.deb`
 
 ## Spark Jar Configuration Path
 `/usr/share/java/{mysql-connection.jars}`
