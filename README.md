@@ -46,8 +46,9 @@ wget https://dlcdn.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz
 tar xvf spark-3.5.1-bin-hadoop3.tgz
 ```
 
-if above command is error, then change the url in this by finding the latest release from [download page](https://spark.apache.org/downloads.html). Then try to run `wget {new_hadoop_download_link}` and redo the extract below
+if above command is error, then change the url in this by finding the latest release from [download page](https://spark.apache.org/downloads.html). Then try to run `wget {new_hadoop_download_link}` and do the extract as the file name like below.
 
+(optional, and don't do it twice)
 ```bash
 tar xvf spark-3.5.1-bin-hadoop3.tgz
 ```
@@ -107,7 +108,7 @@ sudo dpkg -i mysql-connector-j_8.4.0-1ubuntu22.04_all.deb
 cd /usr/share/java/ && pwd && ls && cd ~/
 ```
 
-copy the path (`/usr/share/java/`) and copy the mysql-connector-j-{version}.jar, and save to note with this format: `/usr/share/java/mysql-connector-j-{version}.jar`
+Copy the path (`/usr/share/java/`) and copy the mysql-connector-j-{version}.jar, and save to note with this format: `/usr/share/java/mysql-connector-j-{version}.jar`. Let's say this path is mysql_connector_path.
 
 ## Install MySQL
 ```bash
@@ -131,7 +132,7 @@ sudo mysql -u root
 CREATE USER '{your_username}'@'localhost' IDENTIFIED BY '{your_password}';
 ```
 ```mysql
-GRANT ALL PRIVILEGES ON *.* TO 'your_username'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO '{your_username}'@'localhost' WITH GRANT OPTION;
 ```
 ```mysql
 quit
@@ -142,7 +143,7 @@ quit
 mysql -u {your_username} -p
 ```
 
-enter the password `{your_password}`
+enter the password: `{your_password}`
 
 ## Your next objectives is: Create Database and create table with dummy data
 ### Create Database
@@ -150,7 +151,7 @@ enter the password `{your_password}`
 CREATE DATABASE {database_name};
 ```
 
-### User Database
+### Use Database
 ```mysql
 USE {database_name};
 ```
@@ -160,36 +161,19 @@ USE {database_name};
 ```mysql
 CREATE TABLE {table_name} (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    date DATE,
-    temperature FLOAT,
-    precipitation FLOAT,
-    humidity FLOAT
+    column1 DATE,
+    column2 FLOAT,
+    column3 FLOAT,
+    column4 FLOAT
 );
 ```
 
 ## Insert Table
 
 ```sql
-INSERT INTO {table_name} (date, temperature, precipitation, humidity) VALUES
+INSERT INTO {table_name} (column1, column2, column3, column4) VALUES
 ('2024-05-01', 75.2, 0.3, 60),
-('2024-05-02', 74.8, 0.5, 62),
-('2024-05-03', 76.5, 0.2, 58),
-('2024-05-04', 78.3, 0.1, 55),
-('2024-05-05', 77.6, 0.4, 63),
-('2024-05-06', 76.9, 0.6, 59),
-('2024-05-07', 74.5, 0.8, 61),
-('2024-05-08', 73.2, 0.3, 57),
-('2024-05-09', 72.8, 0.2, 54),
-('2024-05-10', 71.4, 0.1, 56),
-('2024-05-11', 70.9, 0.4, 60),
-('2024-05-12', 69.8, 0.5, 58),
-('2024-05-13', 71.5, 0.3, 62),
-('2024-05-14', 73.2, 0.2, 59),
-('2024-05-15', 74.6, 0.6, 55),
-('2024-05-16', 75.3, 0.7, 57),
-('2024-05-17', 76.7, 0.5, 61),
-('2024-05-18', 77.2, 0.3, 58),
-('2024-05-19', 78.4, 0.2, 60),
+(make your own dummy data),
 ('2024-05-20', 79.1, 0.4, 63);
 ```
 
@@ -206,35 +190,16 @@ nano {your_files}.py
 
 
 ## Input this script into your .py:
-
+*Attention (1): `{mysql_connector_path}` is `/usr/share/java/mysql-connector-j-{version}.jar`!
 ```python
 from pyspark.sql import SparkSession
 
-# Define connection parameters
-database_name = "{your_database_name}"
-table_name = "{your_table_name}"
-username = "{your_username}"
-password = "{your_password}"
-mysql_version = "{mysql_version}"  # e.g., "8.0"
-
 # Create a SparkSession
-spark = SparkSession.builder \
-    .appName("PySpark MySQL Connection") \
-    .config("spark.jars", f"/usr/share/java/mysql-connector-java-{mysql_version}.jar") \
-    .getOrCreate()
+spark = SparkSession.builder.appName("PySpark MySQL Connection").config("spark.jars", "{mysql_connector_path}").getOrCreate()
 
-# Define JDBC connection properties
-jdbc_url = f"jdbc:mysql://localhost:3306/{database_name}"
-jdbc_properties = {
-    "driver": "com.mysql.cj.jdbc.Driver",
-    "url": jdbc_url,
-    "query": f"SELECT * FROM {table_name}",
-    "user": username,
-    "password": password
-}
 
 # Load data from MySQL using JDBC
-df = spark.read.format("jdbc").options(**jdbc_properties).load()
+df = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/{database_name}").option("query", "SELECT * FROM {table_name}").option("user", "{your_username}").option("password", "{your_password}").load()
 
 # Show the DataFrame
 df.show()
@@ -243,7 +208,8 @@ df.show()
 
 
 ## Command to spark submit (copy all command, and make sure your jar version and your_files.py)
-*Be careful with `/usr/share/java/mysql-connector-j-{version}.jar` and `{your_files.py}`
+*Attention (2): `{mysql_connector_path}` is `/usr/share/java/mysql-connector-j-{version}.jar`!
+*Note: Be careful with `{mysql_connector_path}` and `{your_files.py}`
 ```bash
-spark-submit --master local[*] --jars /usr/share/java/mysql-connector-j-{version}.jar --executor-cores 2 --executor-memory 4g --driver-memory 4g --driver-cores 2 --executor-memory 2g --executor-cores 1 {your_files.py}
+spark-submit --master local[*] --jars {mysql_connector_path} --executor-cores 2 --executor-memory 4g --driver-memory 4g --driver-cores 2 --executor-memory 2g --executor-cores 1 {your_files.py}
 ```
