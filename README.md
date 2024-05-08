@@ -156,7 +156,7 @@ CREATE DATABASE {database_name};
 USE {database_name};
 ```
 
-## Create Table
+### Create Table
 
 ```mysql
 CREATE TABLE {table_name} (
@@ -168,7 +168,7 @@ CREATE TABLE {table_name} (
 );
 ```
 
-## Insert Table
+### Insert Table
 
 ```sql
 INSERT INTO {table_name} (column1, column2, column3, column4) VALUES
@@ -177,7 +177,7 @@ INSERT INTO {table_name} (column1, column2, column3, column4) VALUES
 ('2024-05-20', 79.1, 0.4, 63);
 ```
 
-## Quit mysql
+### Quit mysql
 
 ```sql
 quit
