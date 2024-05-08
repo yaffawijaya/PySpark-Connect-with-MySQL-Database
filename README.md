@@ -51,6 +51,9 @@ paste this configuration into bashrc:
 
 `export PYTHONPATH=$(ZIPS=("$SPARK_HOME"/python/lib/*.zip); IFS=:; echo "${ZIPS[*]}"):$PYTHONPATH`
 
+### Source the bashrc
+`source ~/.bashrc`
+
 
 ## Install mysql-connector and Depackage
 `wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j_8.4.0-1ubuntu22.04_all.deb`
