@@ -40,9 +40,6 @@ copy the path
 
 `sudo nano ~/.bashrc`
 
-
-`sudo nano ~/.bashrc`
-
 paste this configuration into bashrc:
 `export SPARK_HOME={paste the path here}`
 
