@@ -81,8 +81,12 @@ copy the path and copy the mysql-connector-j-{version}.jar, and save to note wit
 `mysql -u {your_username} -p`
 enter the password `{your_password}`
 
-## Create Table
-`CREATE TABLE Weather (
+## Your next objectives is: Create Database and create table with dummy data
+### Create Database
+`CREATE DATABASE {database_name}`
+
+### Create Table
+`CREATE TABLE {table_name} (
     id INT AUTO_INCREMENT PRIMARY KEY,
     date DATE,
     temperature FLOAT,
@@ -90,8 +94,8 @@ enter the password `{your_password}`
     humidity FLOAT
 );`
 
-## Insert Table
-`INSERT INTO Weather (date, temperature, precipitation, humidity) VALUES
+### Insert Table
+`INSERT INTO {table_name} (date, temperature, precipitation, humidity) VALUES
 ('2024-05-01', 75.2, 0.3, 60),
 ('2024-05-02', 74.8, 0.5, 62),
 ('2024-05-03', 76.5, 0.2, 58),
@@ -118,13 +122,13 @@ enter the password `{your_password}`
 ## Pyspark File
 `from pyspark.sql import SparkSession`
 
-`spark = SparkSession.builder.appName("PySpark MySQL Connection").config("spark.jars", "/usr/share/java/mysql-connector-j-8.4.0.jar").getOrCreate()`
+`spark = SparkSession.builder.appName("PySpark MySQL Connection").config("spark.jars", "/usr/share/java/mysql-connector-j-{version}.jar").getOrCreate()`
 
-`df = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/pyspark_database").option("query", "SELECT * FROM Weather").option("user", "ilokuda").option("password", "ilokudatangjiro").load()`
+`df = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/{your_database_name}").option("query", "SELECT * FROM {your_table_name}").option("user", "{your_username}").option("password", "{your_password}").load()`
 
 `df.show()`
 
 ## Command to spark submit
-`spark-submit --master local[*] --jars /usr/share/java/mysql-connector-j-8.4.0.jar --executor-cores 2 --executor-memory 4g --driver-memory 4g --driver-cores 2 --executor-memory 2g --executor-cores 1 {files.py}`
+`spark-submit --master local[*] --jars /usr/share/java/mysql-connector-j-{version}.jar --executor-cores 2 --executor-memory 4g --driver-memory 4g --driver-cores 2 --executor-memory 2g --executor-cores 1 {files.py}`
 
 
