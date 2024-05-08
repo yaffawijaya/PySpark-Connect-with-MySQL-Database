@@ -31,7 +31,7 @@ Connect SSH from VM
 
 ## Install Apache Spark
 `sudo apt install curl mlocate git scala -y`
-`wget https://www.apache.org/dyn/closer.lua/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz`
+`wget https://dlcdn.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz`
 `tar xvf spark-3.5.1-bin-hadoop3.tgz`
 
 ## Configure Spark Environment
