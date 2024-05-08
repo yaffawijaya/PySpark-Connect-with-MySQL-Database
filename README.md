@@ -58,7 +58,7 @@ tar xvf spark-3.5.1-bin-hadoop3.tgz
 ```bash
 cd spark-3.5.1-bin-hadoop3 && pwd && cd ..
 ```
-Then, copy the hadoop_path and save to your note
+Then, copy the hadoop_path (`your/hadoop/path/spark-3.5.1-bin-hadoop3`) and save to your note
 
 ```bash
 sudo nano ~/.bashrc
