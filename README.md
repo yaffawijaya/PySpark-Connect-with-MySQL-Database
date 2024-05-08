@@ -177,7 +177,7 @@ INSERT INTO {table_name} (column1, column2, column3, column4) VALUES
 ('2024-05-20', 79.1, 0.4, 63);
 ```
 
-### Quit mysql
+### Quit MySQL
 
 ```sql
 quit
@@ -189,8 +189,7 @@ nano {your_files}.py
 ```
 
 
-## Input this script into your .py:
-*Attention (1): `{mysql_connector_path}` is `/usr/share/java/mysql-connector-j-{version}.jar`!
+## Input this script into your {your_files}.py:
 ```python
 from pyspark.sql import SparkSession
 
@@ -205,11 +204,22 @@ df = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").optio
 df.show()
 
 ```
-
+### Make Sure:
+#### Attention:
+*Important Note: `{mysql_connector_path}` is `/usr/share/java/mysql-connector-j-{version}.jar`!
+#### Note:
+*Note: Be careful with `{mysql_connector_path}` and `{your_files.py}`
 
 ## Command to spark submit (copy all command, and make sure your jar version and your_files.py)
-*Attention (2): `{mysql_connector_path}` is `/usr/share/java/mysql-connector-j-{version}.jar`!
-*Note: Be careful with `{mysql_connector_path}` and `{your_files.py}`
+
 ```bash
 spark-submit --master local[*] --jars {mysql_connector_path} --executor-cores 2 --executor-memory 4g --driver-memory 4g --driver-cores 2 --executor-memory 2g --executor-cores 1 {your_files.py}
 ```
+
+### Make Sure:
+#### Attention:
+*Important Note: `{mysql_connector_path}` is `/usr/share/java/mysql-connector-j-{version}.jar`!
+#### Note:
+*Note: Be careful with `{mysql_connector_path}` and `{your_files.py}`
+
+# And you are all set! Congratulation!
