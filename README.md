@@ -58,6 +58,7 @@ paste this configuration into bashrc:
 
 ## Spark Jar Configuration Path
 `cd /usr/share/java/ && pwd && ls && cd ~/`
+copy the path and copy the mysql-connector-j-{version}.jar, and save to note
 
 ## Install MySQL
 - **MySQL Installation Guide:** [How to Install MySQL on Ubuntu 22.04](https://phoenixnap.com/kb/install-mysql-ubuntu-22-04)
