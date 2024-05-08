@@ -64,3 +64,7 @@ Connect SSH from VM
 
 `df.show()`
 
+## Command to spark submit
+`spark-submit --master local[*] --jars /usr/share/java/mysql-connector-j-8.4.0.jar --executor-cores 2 --executor-memory 4g --driver-memory 4g --driver-cores 2 --executor-memory 2g --executor-cores 1 {files.py}`
+
+
