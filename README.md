@@ -121,6 +121,8 @@ enter the password `{your_password}`
 ('2024-05-20', 79.1, 0.4, 63);
 `
 
+### Quit mysql
+`quit;`
 
 ## Create .py Pyspark File:
 `nano {your_files}.py`
@@ -134,7 +136,7 @@ enter the password `{your_password}`
 
 `df.show()`
 
-## Command to spark submit
+## Command to spark submit (copy all command, and make sure your jar version and your_files.py)
 `spark-submit --master local[*] --jars /usr/share/java/mysql-connector-j-{version}.jar --executor-cores 2 --executor-memory 4g --driver-memory 4g --driver-cores 2 --executor-memory 2g --executor-cores 1 {your_files.py}`
 
 
