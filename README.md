@@ -19,6 +19,7 @@ Connect SSH from VM
 `sudo apt-get install python3-pip`
 `sudo pip3 install virtualenv`
 `virtualenv name_of_the_project -p python3.8`
+`source {your env name}/bin/activate`
 
 ## Guide to install PySpark
 - **PySpark Installation Guide:** [How to Install Apache Spark and Run PySpark in Ubuntu 22.04](https://dev.to/kinyungu_denis/to-install-apache-spark-and-run-pyspark-in-ubuntu-2204-4i79)
