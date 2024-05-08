@@ -225,10 +225,10 @@ spark-submit --master local[*] --jars {mysql_connector_path} --executor-cores 2 
 # And you are all set! Congratulation!
 
 ## References:
-[How to Install Python 3.8 on Ubuntu 22.04 or 20.04](https://www.linuxcapable.com/install-python-3-8-on-ubuntu-linux/)
-[Creation of virtual environments](https://docs.python.org/3.8/library/venv.html)
-[Install Apache Spark and run PySpark in Ubuntu 22.04](https://dev.to/kinyungu_denis/to-install-apache-spark-and-run-pyspark-in-ubuntu-2204-4i79)
-[How to Install MySQL on Ubuntu 22.04](https://phoenixnap.com/kb/install-mysql-ubuntu-22-04)
-[Download mysql-connector](https://dev.mysql.com/downloads/connector/j/)
-[PySpark Read and Write MySQL Database Table](https://sparkbyexamples.com/pyspark/pyspark-read-and-write-mysql-database-table/)
-[My Friend Agung's Way of MySQL Connection Installation](https://youtu.be/oFhrE6g4pbQ?si=kh7fFBG_BGZWCJi3)
+- [How to Install Python 3.8 on Ubuntu 22.04 or 20.04](https://www.linuxcapable.com/install-python-3-8-on-ubuntu-linux/)
+- [Creation of virtual environments](https://docs.python.org/3.8/library/venv.html)
+- [Install Apache Spark and run PySpark in Ubuntu 22.04](https://dev.to/kinyungu_denis/to-install-apache-spark-and-run-pyspark-in-ubuntu-2204-4i79)
+- [How to Install MySQL on Ubuntu 22.04](https://phoenixnap.com/kb/install-mysql-ubuntu-22-04)
+- [Download mysql-connector](https://dev.mysql.com/downloads/connector/j/)
+- [PySpark Read and Write MySQL Database Table](https://sparkbyexamples.com/pyspark/pyspark-read-and-write-mysql-database-table/)
+- [My Friend Agung's Way of MySQL Connection Installation](https://youtu.be/oFhrE6g4pbQ?si=kh7fFBG_BGZWCJi3)
