@@ -73,9 +73,13 @@ copy the path and copy the mysql-connector-j-{version}.jar, and save to note wit
 
 ## Set up mysql
 `sudo mysql -u root`
-`CREATE USER 'your_username'@'localhost' IDENTIFIED BY 'your_password';`
+`CREATE USER '{your_username}'@'localhost' IDENTIFIED BY '{your_password}';`
 `GRANT ALL PRIVILEGES ON *.* TO 'your_username'@'localhost' WITH GRANT OPTION;`
 `quit`
+
+### Try to access your user just create:
+`mysql -u {your_username} -p`
+enter the password `{your_password}`
 
 ## Create Table
 `CREATE TABLE Weather (
