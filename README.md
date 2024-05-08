@@ -11,7 +11,7 @@
 ### Working Environment
 Connect SSH from VM via terminal/powershell/cmd using `ssh {username}@{public_ip}` then input the password
 
-## Installation Guides
+## Installation python3.8 Guides
 `sudo apt update`
 `sudo apt upgrade`
 `sudo add-apt-repository ppa:deadsnakes/ppa -y`
