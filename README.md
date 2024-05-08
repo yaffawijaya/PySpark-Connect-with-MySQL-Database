@@ -56,9 +56,6 @@ java --version
 ```
 
 ## Install Apache Spark
-`sudo apt install curl mlocate git scala -y`
-`wget https://dlcdn.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz`
-`tar xvf spark-3.5.1-bin-hadoop3.tgz`
 
 ```bash
 sudo apt install curl mlocate git scala -y
@@ -100,6 +97,18 @@ export PYTHONPATH=$(ZIPS=("$SPARK_HOME"/python/lib/*.zip); IFS=:; echo "${ZIPS[*
 ```bash
 source ~/.bashrc
 ```
+
+### Test the Spark and PySpark
+Test `spark-shell` installation:
+```bash
+spark-shell
+```
+Test `pyspark` installation:
+```bash
+pyspark
+```
+
+If no error, you good to go!
 
 ## Install mysql-connector and Depackage
 
@@ -231,5 +240,3 @@ df.show()
 ```bash
 spark-submit --master local[*] --jars /usr/share/java/mysql-connector-j-{version}.jar --executor-cores 2 --executor-memory 4g --driver-memory 4g --driver-cores 2 --executor-memory 2g --executor-cores 1 {your_files.py}
 ```
-
-
