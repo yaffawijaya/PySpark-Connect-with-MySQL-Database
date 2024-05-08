@@ -35,9 +35,11 @@ Connect SSH from VM
 `tar xvf spark-3.5.1-bin-hadoop3.tgz`
 
 ## Configure Spark Environment
-`sudo nano ~/.bashrc`
 `cd spark-3.5.1-bin-hadoop3 && pwd && cd ..`
 copy the path
+
+`sudo nano ~/.bashrc`
+
 
 `sudo nano ~/.bashrc`
 
